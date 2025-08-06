@@ -1,5 +1,4 @@
 import time
-
 from pyrogram import filters
 from pyrogram.enums import ChatType
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
@@ -24,12 +23,15 @@ from config import BANNED_USERS
 from strings import get_string
 from config import START_IMG_URL
 
+
 @app.on_message(filters.command(["start"]) & filters.private & ~BANNED_USERS)
 @LanguageStart
 async def start_pm(client, message: Message, _):
     await add_served_user(message.from_user.id)
+
     if len(message.text.split()) > 1:
         name = message.text.split(None, 1)[1]
+
         if name[0:4] == "help":
             keyboard = help_pannel(_)
             return await message.reply_photo(
@@ -37,6 +39,7 @@ async def start_pm(client, message: Message, _):
                 caption=_["help_1"].format(config.SUPPORT_CHAT),
                 reply_markup=keyboard,
             )
+
         if name[0:3] == "sud":
             await sudoers_list(client=client, message=message, _=_)
             if await is_on_off(2):
@@ -45,11 +48,13 @@ async def start_pm(client, message: Message, _):
                     text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <b>sᴜᴅᴏʟɪsᴛ</b>.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
                 )
             return
+
         if name[0:3] == "inf":
             m = await message.reply_text("🔎")
             query = (str(name)).replace("info_", "", 1)
             query = f"https://www.youtube.com/watch?v={query}"
             results = VideosSearch(query, limit=1)
+
             for result in (await results.next())["result"]:
                 title = result["title"]
                 duration = result["duration"]
@@ -59,6 +64,7 @@ async def start_pm(client, message: Message, _):
                 channel = result["channel"]["name"]
                 link = result["link"]
                 published = result["publishedTime"]
+
             searched_text = _["start_6"].format(
                 title, duration, views, published, channellink, channel, app.mention
             )
@@ -83,18 +89,18 @@ async def start_pm(client, message: Message, _):
                     text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <b>ᴛʀᴀᴄᴋ ɪɴғᴏʀᴍᴀᴛɪᴏɴ</b>.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
                 )
     else:
-       keyboard = InlineKeyboardMarkup(
-    [
-        [InlineKeyboardButton("Join Channel", url="https://t.me/yourchannel")]
-    ],
-)
-
-await message.reply_photo(
-    photo=START_IMG_URL,
-    caption="👋 Welcome to the bot!",
-    reply_markup=keyboard  # ✅ Make sure this is NOT None
-)
+        keyboard = InlineKeyboardMarkup(
+            [
+                [InlineKeyboardButton("Join Channel", url="https://t.me/bot_bugs")]
+            ],
         )
+
+        await message.reply_photo(
+            photo=START_IMG_URL,
+            caption="👋 Welcome to the bot!",
+            reply_markup=keyboard,
+        )
+
         if await is_on_off(2):
             return await app.send_message(
                 chat_id=config.LOGGER_ID,
@@ -121,15 +127,18 @@ async def welcome(client, message: Message):
         try:
             language = await get_lang(message.chat.id)
             _ = get_string(language)
+
             if await is_banned_user(member.id):
                 try:
                     await message.chat.ban_member(member.id)
                 except:
                     pass
+
             if member.id == app.id:
                 if message.chat.type != ChatType.SUPERGROUP:
                     await message.reply_text(_["start_4"])
                     return await app.leave_chat(message.chat.id)
+
                 if message.chat.id in await blacklisted_chats():
                     await message.reply_text(
                         _["start_5"].format(
@@ -154,5 +163,6 @@ async def welcome(client, message: Message):
                 )
                 await add_served_chat(message.chat.id)
                 await message.stop_propagation()
+
         except Exception as ex:
             print(ex)
