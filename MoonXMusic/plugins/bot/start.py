@@ -166,4 +166,3 @@ buttons = [
             InlineKeyboardButton(text=_["S_B_6"], callback_data="LG"),
         ],
     ]
-    return buttons
