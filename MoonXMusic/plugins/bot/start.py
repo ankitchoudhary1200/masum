@@ -86,7 +86,7 @@ async def start_pm(client, message: Message, _):
        keyboard = InlineKeyboardMarkup(
     [
         [InlineKeyboardButton("Join Channel", url="https://t.me/yourchannel")]
-    ]
+    ],
 )
 
 await message.reply_photo(
