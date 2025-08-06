@@ -22,9 +22,8 @@ from MoonXMusic.utils.formatters import get_readable_time
 from MoonXMusic.utils.inline import help_pannel, private_panel, start_panel
 from config import BANNED_USERS
 from strings import get_string
-
-
 from config import START_IMG_URL
+
 
 @app.on_message(filters.command(["start"]) & filters.private & ~BANNED_USERS)
 @LanguageStart
@@ -106,16 +105,17 @@ async def start_pm(client, message: Message, _):
                 if safe_row:
                     safe_out.append(safe_row)
 
-        if    safe_out:
-    reply_markup = InlineKeyboardMarkup(safe_out)
-else:
-    reply_markup = None
+        if safe_out:  # fixed
+            reply_markup = InlineKeyboardMarkup(safe_out)  # fixed
+        else:  # fixed
+            reply_markup = None  # fixed
 
-await message.reply_photo(
-    photo=config.START_IMG_URL,
-    caption=_["start_2"].format(message.from_user.mention),
-    reply_markup=reply_markup
-)
+        await message.reply_photo(  # fixed
+            photo=config.START_IMG_URL,  # fixed
+            caption=_["start_2"].format(message.from_user.mention),  # fixed
+            reply_markup=reply_markup  # fixed
+        )  # fixed
+
         if await is_on_off(2):
             return await app.send_message(
                 chat_id=config.LOGGER_ID,
@@ -179,4 +179,3 @@ async def welcome(client, message: Message):
                 await message.stop_propagation()
         except Exception as ex:
             print(ex)
-           
