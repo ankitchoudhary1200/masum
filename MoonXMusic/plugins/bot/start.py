@@ -83,11 +83,17 @@ async def start_pm(client, message: Message, _):
                     text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <b>ᴛʀᴀᴄᴋ ɪɴғᴏʀᴍᴀᴛɪᴏɴ</b>.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
                 )
     else:
-        out = private_panel(_)
-        await message.reply_photo(
-            photo=config.START_IMG_URL,
-            caption=_["start_2"].format(message.from_user.mention, app.mention),
-            reply_markup=InlineKeyboardMarkup(out),
+       keyboard = InlineKeyboardMarkup(
+    [
+        [InlineKeyboardButton("Join Channel", url="https://t.me/yourchannel")]
+    ]
+)
+
+await message.reply_photo(
+    photo=START_IMG_URL,
+    caption="👋 Welcome to the bot!",
+    reply_markup=keyboard  # ✅ Make sure this is NOT None
+)
         )
         if await is_on_off(2):
             return await app.send_message(
