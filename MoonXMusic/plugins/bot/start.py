@@ -112,7 +112,7 @@ async def start_pm(client, message: Message, _):
 
         await message.reply_photo(  # fixed
             photo=config.START_IMG_URL,  # fixed
-            caption=_["start_2"].format(message.from_user.mention),  # fixed
+            caption=_["start_2"].format(message.from_user.mention, app.mention),  # ✅ fixed,  # fixed
             reply_markup=reply_markup  # fixed
         )  # fixed
 
