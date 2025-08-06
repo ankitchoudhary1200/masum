@@ -91,9 +91,22 @@ async def start_pm(client, message: Message, _):
     else:
         keyboard = InlineKeyboardMarkup(
             [
-                [InlineKeyboardButton("Join Channel", url="https://t.me/bot_bugs")]
-            ],
-        )
+        [
+            InlineKeyboardButton(
+                text=_["S_B_3"],
+                url=f"https://t.me/{app.username}?startgroup=true",
+            )
+        ],
+        [ InlineKeyboardButton(text=_["S_B_4"], callback_data="settings_back_helper")],
+        [
+            InlineKeyboardButton(text=_["S_B_5"], user_id=config.OWNER_ID),
+            InlineKeyboardButton(text=_["S_B_2"], url=config.SUPPORT_CHAT),
+        ],
+        [
+            InlineKeyboardButton(text=_["S_B_6"], callback_data="LG"),
+        ],
+    ]
+ )
 
         await message.reply_photo(
             photo=START_IMG_URL,
