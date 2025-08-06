@@ -96,7 +96,7 @@ async def start_pm(client, message: Message, _):
                 )
 
     else:
-        out = private_panel(_)
+        out = private_panel(_) or []  # ✅ fixed: fallback if None
 
         safe_out = []
         for row in out:
@@ -105,16 +105,16 @@ async def start_pm(client, message: Message, _):
                 if safe_row:
                     safe_out.append(safe_row)
 
-        if safe_out:  # fixed
-            reply_markup = InlineKeyboardMarkup(safe_out)  # fixed
-        else:  # fixed
-            reply_markup = None  # fixed
+        if safe_out:  # ✅ fixed
+            reply_markup = InlineKeyboardMarkup(safe_out)  # ✅ fixed
+        else:
+            reply_markup = None  # ✅ fixed
 
-        await message.reply_photo(  # fixed
-            photo=config.START_IMG_URL,  # fixed
-            caption=_["start_2"].format(message.from_user.mention, app.mention),  # ✅ fixed,  # fixed
-            reply_markup=reply_markup  # fixed
-        )  # fixed
+        await message.reply_photo(
+            photo=config.START_IMG_URL,
+            caption=_["start_2"].format(message.from_user.mention, app.mention),  # ✅ fixed
+            reply_markup=reply_markup
+        )
 
         if await is_on_off(2):
             return await app.send_message(
