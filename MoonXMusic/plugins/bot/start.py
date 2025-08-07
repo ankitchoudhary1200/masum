@@ -120,7 +120,7 @@ async def start_pm(client, message: Message, _):
                         text=_["S_B_6"], url=config.SUPPORT_CHANNEL,
                     ),
                     InlineKeyboardButton(
-                        text="_[S_B_7"], url=config.START_IMG_URL,
+                        text="_["S_B_7"], url=config.START_IMG_URL,
                     )
                 ],
                 ]
