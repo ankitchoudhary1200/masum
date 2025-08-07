@@ -80,11 +80,11 @@ async def settings_back_markup(client, CallbackQuery: CallbackQuery, _):
         buttons = private_panel(_)
         return await CallbackQuery.edit_message_text(
             _["start_2"].format(CallbackQuery.from_user.mention, app.mention),
-            reply_markup=InlineKeyboardMarkup([InlineKeyboardButton(text="⛈️ ʙᴀᴄᴋ ⛈️", callback_data=f"settingsback_helper")],
+            reply_markup=InlineKeyboardMarkup([InlineKeyboardButton(text="⛈️ ʙᴀᴄᴋ ⛈️", callback_data=f"settingsback_helper",)],
         )
         buttons = setting_markup(_)
         return await CallbackQuery.edit_message_reply_markup(
-            reply_markup=InlineKeyboardMarkup([InlineKeyboardButton(text="⛈️ ʙᴀᴄᴋ ⛈️", callback_data=f"settingsback_helper")],
+            reply_markup=InlineKeyboardMarkup([InlineKeyboardButton(text="⛈️ ʙᴀᴄᴋ ⛈️", callback_data=f"settingsback_helper",)],
         )
 
 
