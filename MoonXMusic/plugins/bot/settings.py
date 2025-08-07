@@ -1,12 +1,6 @@
 from pyrogram import filters
 from pyrogram.enums import ChatType
-from pyrogram.errors import MessageNotModified
-from pyrogram.types import (
-    CallbackQuery,
-    InlineKeyboardButton,
-    InlineKeyboardMarkup,
-    Message,
-)
+from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 from MoonXMusic import app
 from MoonXMusic.utils.database import (
@@ -37,9 +31,7 @@ from MoonXMusic.utils.inline.start import private_panel
 from config import BANNED_USERS, OWNER_ID
 
 
-@app.on_message(
-    filters.command(["settings", "setting"]) & filters.group & ~BANNED_USERS
-)
+@app.on_message(filters.command(["settings", "setting"]) & filters.group & ~BANNED_USERS)
 @language
 async def settings_mar(client, message: Message, _):
     buttons = setting_markup(_)
@@ -76,21 +68,31 @@ async def settings_back_markup(client, CallbackQuery: CallbackQuery, _):
         pass
     if CallbackQuery.message.chat.type == ChatType.PRIVATE:
         await app.resolve_peer(OWNER_ID)
-        OWNER = OWNER_ID
         buttons = private_panel(_)
         return await CallbackQuery.edit_message_text(
             _["start_2"].format(CallbackQuery.from_user.mention, app.mention),
             reply_markup=InlineKeyboardMarkup(
                 [
-                [InlineKeyboardButton(text="⛈️ ʙᴀᴄᴋ ⛈️", callback_data=f"settingsback_helper")]
-                ],
+                    [
+                        InlineKeyboardButton(
+                            text="⛈️ ʙᴀᴄᴋ ⛈️", callback_data="settings_helper"
+                        )
+                    ]
+                ]
+            ),
         )
+    else:
         buttons = setting_markup(_)
         return await CallbackQuery.edit_message_reply_markup(
             reply_markup=InlineKeyboardMarkup(
                 [
-                [InlineKeyboardButton(text="⛈️ ʙᴀᴄᴋ ⛈️", callback_data=f"settingsback_helper")]
-                ],
+                    [
+                        InlineKeyboardButton(
+                            text="⛈️ ʙᴀᴄᴋ ⛈️", callback_data="settings_helper"
+                        )
+                    ]
+                ]
+            )
         )
 
 
