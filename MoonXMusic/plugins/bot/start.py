@@ -40,7 +40,7 @@ from MoonXMusic.utils.decorators.language import LanguageStart
 
 from MoonXMusic.utils.formatters import get_readable_time
 
-from MoonXMusic.utils.inline import help_pannel, private_panel, start_panel
+from MoonXMusic.utils.inline import help_pannel, start_panel
 
 from config import BANNED_USERS
 
@@ -168,17 +168,23 @@ async def start_pm(client, message: Message, _):
 
     else:
 
-        out = private_panel(_)
-
-        await message.reply_photo(
-
+        
+            await message.reply_photo(
             photo=config.START_IMG_URL,
-
             caption=_["start_2"].format(message.from_user.mention, app.mention),
-
-            reply_markup=InlineKeyboardMarkup(),
-
-        )
+            reply_markup=InlineKeyboardMarkup(
+                    [
+                        InlineKeyboardButton(
+                            text="ꜱᴜᴩᴩᴏꝛᴛ", url="https://t.me/xscnox",
+                        ),
+                        InlineKeyboardButton(
+                            text="ᴜᴩᴅᴧᴛєꜱ", url="https://t.me/Bot_Bugs",
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(text="⛈️ ʙᴀᴄᴋ ⛈️", callback_data=f"settingsback_helper"),
+                    ],
+                )
 
         if await is_on_off(2):
 
