@@ -97,7 +97,7 @@ async def start_pm(client, message: Message, _):
             caption=_["start_2"].format(message.from_user.mention, app.mention),
             reply_markup=InlineKeyboardMarkup(
                 [
-                    InlineKeyboardButton(
+                    [InlineKeyboardButton(
                         text=_["S_B_3"],
                         url=f"https://t.me/{app.username}?startgroup=true",
                     )
@@ -123,6 +123,7 @@ async def start_pm(client, message: Message, _):
                         text="repo", url="https://t.me/BUZZ_IGCC_CHAT",
                     ),
                 ],
+                ]
             ),
         )
 
