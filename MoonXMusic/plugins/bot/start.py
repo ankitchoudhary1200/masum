@@ -20,7 +20,7 @@ from MoonXMusic.utils.database import (
 from MoonXMusic.utils.decorators.language import LanguageStart
 from MoonXMusic.utils.formatters import get_readable_time
 from MoonXMusic.utils.inline import help_pannel, start_panel
-from config import BANNED_USERS
+from config import BANNED_USERS, OWNER_ID, SUPPORT_CHAT, SUPPORT_CHANNEL
 from strings import get_string
 
 
@@ -109,19 +109,19 @@ async def start_pm(client, message: Message, _):
                 ],
                 [
                     InlineKeyboardButton(
-                        text=_["S_B_5"], url="https://t.me/BUZZ_IGCC_CHAT",
+                        text=_["S_B_5"], user_id=config.OWNER_ID,
                     ),
                     InlineKeyboardButton(
-                        text=_["S_B_2"], url="https://t.me/BUZZ_IGCC_CHAT",
-                    ),
+                        text=_["S_B_2"], url=config.SUPPORT_CHAT,
+                    )
                 ],
                 [
                     InlineKeyboardButton(
-                        text=_["S_B_6"], url="https://t.me/BUZZ_IGCC_CHAT",
-                    ),
+                        text=_["S_B_6"], url=config.SUPPORT_CHANNEL,
+                    )
                     InlineKeyboardButton(
-                        text="repo", url="https://t.me/BUZZ_IGCC_CHAT",
-                    ),
+                        text="_[S_B_7"], url=config.START_IMG_URL,
+                    )
                 ],
                 ]
             ),
