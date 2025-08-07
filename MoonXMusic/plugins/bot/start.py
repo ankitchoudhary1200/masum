@@ -23,6 +23,24 @@ from config import BANNED_USERS
 from strings import get_string
 from config import START_IMG_URL
 
+# Buttons moved to top to fix 'NameError'
+buttons = InlineKeyboardMarkup([
+    [
+        InlineKeyboardButton(
+            text="S_B_3",  # Replace with _["S_B_3"] if language dict available
+            url=f"https://t.me/{app.username}?startgroup=true",
+        )
+    ],
+    [InlineKeyboardButton(text="f", callback_data="settings_back_helper")],
+    [
+        InlineKeyboardButton(text="3", user_id=config.OWNER_ID),
+        InlineKeyboardButton(text="S_B_2", url=config.SUPPORT_CHAT),
+    ],
+    [
+        InlineKeyboardButton(text="S_B_6", callback_data="LG"),
+    ],
+])
+
 
 @app.on_message(filters.command(["start"]) & filters.private & ~BANNED_USERS)
 @LanguageStart
@@ -42,7 +60,7 @@ async def start_pm(client, message: Message, _):
             if await is_on_off(2):
                 return await app.send_message(
                     chat_id=config.LOGGER_ID,
-                    text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <b>sᴜᴅᴏʟɪsᴛ</b>.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
+                    text=f"{message.from_user.mention} just started the bot to check sudo list.\n\nUser ID: <code>{message.from_user.id}</code>\nUsername: @{message.from_user.username}",
                 )
             return
         if name[0:3] == "inf":
@@ -80,19 +98,19 @@ async def start_pm(client, message: Message, _):
             if await is_on_off(2):
                 return await app.send_message(
                     chat_id=config.LOGGER_ID,
-                    text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <b>ᴛʀᴀᴄᴋ ɪɴғᴏʀᴍᴀᴛɪᴏɴ</b>.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
+                    text=f"{message.from_user.mention} started the bot to check track info.\n\nUser ID: <code>{message.from_user.id}</code>\nUsername: @{message.from_user.username}",
                 )
 
-        await message.reply_photo(
-            photo=START_IMG_URL,
-            caption="👋 Welcome to the bot!",
-            reply_markup=buttons
+    await message.reply_photo(
+        photo=START_IMG_URL,
+        caption="👋 Welcome to the bot!",
+        reply_markup=buttons
+    )
+    if await is_on_off(2):
+        return await app.send_message(
+            chat_id=config.LOGGER_ID,
+            text=f"{message.from_user.mention} just started the bot.\n\nUser ID: <code>{message.from_user.id}</code>\nUsername: @{message.from_user.username}",
         )
-        if await is_on_off(2):
-            return await app.send_message(
-                chat_id=config.LOGGER_ID,
-                text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
-            )
 
 
 @app.on_message(filters.command(["start"]) & filters.group & ~BANNED_USERS)
@@ -149,20 +167,3 @@ async def welcome(client, message: Message):
                 await message.stop_propagation()
         except Exception as ex:
             print(ex)
-
-buttons = [
-        [
-            InlineKeyboardButton(
-                text="S_B_3",
-                url=f"https://t.me/{app.username}?startgroup=true",
-            )
-        ],
-        [InlineKeyboardButton(text="f", callback_data="settings_back_helper")],
-        [
-            InlineKeyboardButton(text="3", user_id=config.OWNER_ID),
-            InlineKeyboardButton(text="S_B_2", url=config.SUPPORT_CHAT),
-        ],
-        [
-            InlineKeyboardButton(text="S_B_6", callback_data="LG"),
-        ],
-    ]
