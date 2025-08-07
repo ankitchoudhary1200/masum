@@ -95,7 +95,7 @@ async def start_pm(client, message: Message, _):
         await message.reply_photo(
             photo=config.START_IMG_URL,
             caption=_["start_2"].format(message.from_user.mention, app.mention),
-            reply_markup=InlineKeyboardMarkup([
+            reply_markup=InlineKeyboardMarkup(
                 [
                     InlineKeyboardButton(
                         text=_["S_B_3"],
@@ -104,26 +104,26 @@ async def start_pm(client, message: Message, _):
                 ],
                 [
                     InlineKeyboardButton(
-                        text=_["S_B_4"], callback_data="settings_back_helper"
+                        text=_["S_B_4"], callback_data="settings_back_helper",
                     )
                 ],
                 [
                     InlineKeyboardButton(
-                        text=_["S_B_5"], user_id=config.OWNER_ID
+                        text=_["S_B_5"], url="https://t.me/BUZZ_IGCC_CHAT",
                     ),
                     InlineKeyboardButton(
-                        text=_["S_B_2"], url=config.SUPPORT_CHAT
+                        text=_["S_B_2"], url="https://t.me/BUZZ_IGCC_CHAT",
                     ),
                 ],
                 [
                     InlineKeyboardButton(
-                        text=_["S_B_6"], url=config.SUPPORT_CHANNEL
+                        text=_["S_B_6"], url="https://t.me/BUZZ_IGCC_CHAT",
                     ),
                     InlineKeyboardButton(
-                        text=_["S_B_7"], url=config.UPSTREAM_REPO
+                        text="repo", url="https://t.me/BUZZ_IGCC_CHAT",
                     ),
                 ],
-            ]),
+            ),
         )
 
         if await is_on_off(2):
