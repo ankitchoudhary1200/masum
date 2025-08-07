@@ -112,15 +112,16 @@ async def start_pm(client, message: Message, _):
                         text=_["S_B_5"], user_id=config.OWNER_ID,
                     ),
                     InlineKeyboardButton(
-                        text=_["S_B_2"], url=config.SUPPORT_CHAT,
+                        text=_["S_B_2"], url="https://t.me/masoomupdate",
                     ),
                 ],
                 [
                     InlineKeyboardButton(
-                        text=_["S_B_6"], url=config.SUPPORT_CHANNEL,
+                        text=_["S_B_6"], url="https://t.me/masoomupdate",
                     ),
                     InlineKeyboardButton(
-                        text="Sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ", url=config.START_IMG_URL),
+                        text="Sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ", url="https://t.me/masoomupdate",
+                    ),
                 ],
                 ]
             ),
