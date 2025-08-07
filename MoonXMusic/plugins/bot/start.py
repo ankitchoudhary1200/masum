@@ -31,13 +31,13 @@ buttons = InlineKeyboardMarkup([
             url=f"https://t.me/{app.username}?startgroup=true",
         )
     ],
-    [InlineKeyboardButton(text="⚙️ Settings", callback_data="settings_back_helper")],
+    [InlineKeyboardButton(text="⚙️ Settings", url="https://t.me/{app.username}?startgroup=true")],
     [
-        InlineKeyboardButton(text="👤 Owner", user_id=OWNER_ID),
-        InlineKeyboardButton(text="💬 Support", url=SUPPORT_CHAT),
+        InlineKeyboardButton(text="👤 Owner", url="https://t.me/{app.username}?startgroup=true"),
+        InlineKeyboardButton(text="💬 Support", url="https://t.me/{app.username}?startgroup=true"),
     ],
     [
-        InlineKeyboardButton(text="🌐 Language", callback_data="LG"),
+        InlineKeyboardButton(text="🌐 Language", url="https://t.me/{app.username}?startgroup=true"),
     ],
 ])
 
