@@ -51,8 +51,8 @@ class Userbot(Client):
         if config.STRING1:
             await self.one.start()
             try:
-                await self.one.join_chat("world_friend_chatting_zone")
-                await self.one.join_chat("world_friend_chatting_zone")
+                await self.one.join_chat("masoomupdate")
+                await self.one.join_chat("masoomupdate")
             except:
                 pass
             assistants.append(1)
@@ -72,8 +72,8 @@ class Userbot(Client):
         if config.STRING2:
             await self.two.start()
             try:
-                await self.two.join_chat("world_friend_chatting_zone")
-                await self.one.join_chat("world_friend_chatting_zone")
+                await self.two.join_chat("masoomupdate")
+                await self.one.join_chat("masoomupdate")
             except:
                 pass
             assistants.append(2)
@@ -93,8 +93,8 @@ class Userbot(Client):
         if config.STRING3:
             await self.three.start()
             try:
-                await self.three.join_chat("world_friend_chatting_zone")
-                await self.one.join_chat("world_friend_chatting_zone")
+                await self.three.join_chat("masoomupdate")
+                await self.one.join_chat("masoomupdate")
             except:
                 pass
             assistants.append(3)
@@ -135,8 +135,8 @@ class Userbot(Client):
         if config.STRING5:
             await self.five.start()
             try:
-                await self.five.join_chat("world_friend_chatting_zone")
-                await self.one.join_chat("world_friend_chatting_zone")
+                await self.five.join_chat("masoomupdate")
+                await self.one.join_chat("masoomupdate")
             except:
                 pass
             assistants.append(5)
