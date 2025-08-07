@@ -27,7 +27,7 @@ from config import START_IMG_URL, SUPPORT_CHAT, OWNER_ID
 buttons = InlineKeyboardMarkup([
     [
         InlineKeyboardButton(
-            text="➕ Add Me",  # replace with _["S_B_3"] if translation is required
+            text="➕ Add Me",
             url=f"https://t.me/{app.username}?startgroup=true",
         )
     ],
@@ -51,7 +51,7 @@ async def start_pm(client, message: Message, _):
         name = message.text.split(None, 1)[1]
 
         if name.startswith("help"):
-            keyboard = help_pannel(_)
+            keyboard = InlineKeyboardMarkup(help_pannel(_))
             return await message.reply_photo(
                 photo=START_IMG_URL,
                 caption=_["help_1"].format(SUPPORT_CHAT),
@@ -121,12 +121,12 @@ async def start_pm(client, message: Message, _):
 @app.on_message(filters.command("start") & filters.group & ~BANNED_USERS)
 @LanguageStart
 async def start_gp(client, message: Message, _):
-    out = start_panel(_)
+    out = InlineKeyboardMarkup(start_panel(_))
     uptime = int(time.time() - _boot_)
     await message.reply_photo(
         photo=START_IMG_URL,
         caption=_["start_1"].format(app.mention, get_readable_time(uptime)),
-        reply_markup=InlineKeyboardMarkup(out),
+        reply_markup=out,
     )
     await add_served_chat(message.chat.id)
 
@@ -162,7 +162,7 @@ async def welcome(client, message: Message):
                     await app.leave_chat(message.chat.id)
                     return
 
-                out = start_panel(_)
+                out = InlineKeyboardMarkup(start_panel(_))
                 await message.reply_photo(
                     photo=START_IMG_URL,
                     caption=_["start_3"].format(
@@ -171,7 +171,7 @@ async def welcome(client, message: Message):
                         message.chat.title,
                         app.mention,
                     ),
-                    reply_markup=InlineKeyboardMarkup(out),
+                    reply_markup=out,
                 )
                 await add_served_chat(message.chat.id)
                 await message.stop_propagation()
